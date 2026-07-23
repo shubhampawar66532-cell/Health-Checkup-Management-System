@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Check-Up Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<body>
+
+
+
+<h1>🏥 Health Check-Up Dashboard</h1>
+
+<div class="navbar">
+
+    <a href="{{ url_for('home') }}">🏠 Home</a>
+
+    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <h2>Total Patients</h2>
+        <p>{{ total_patients }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Average BMI</h2>
+        <p>{{ avg_bmi }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Average Age</h2>
+        <p>{{ avg_age }}</p>
+    </div>
+
+</div>
+
+<br>
+<form method="GET" action="{{ url_for('home') }}" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="🔍 Search Patient ID or Gender"
+        value="{{ search }}">
+
+    <button type="submit">Search</button>
+
+</form>
+
+<br>
+<form action="/add"
+      method="POST"
+      enctype="multipart/form-data"
+      class="add-form">
+
+</form>   <input type="number" name="Patient_ID" placeholder="Patient ID" required>
+
+    <input type="number" name="Age" placeholder="Age" required>
+
+    <select name="Gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <input type="number" name="Height_cm" placeholder="Height (cm)" required>
+
+    <input type="number" name="Weight_kg" placeholder="Weight (kg)" required>
+
+    <input type="number" name="Systolic_BP" placeholder="Systolic BP" required>
+
+    <input type="number" name="Diastolic_BP" placeholder="Diastolic BP" required>
+    <input type="number" name="Diastolic_BP" placeholder="Diastolic BP" required>
+
+    <input type="file" name="photo" accept="image/*">
+
+
+
+    <button type="submit">➕ Add Patient</button>
+
+</form>
+<br>
+
+<a href="{{ url_for('download_pdf') }}">
+    <button type="button">
+        📄 Download PDF Report
+    </button>
+</a>
+<br><br>
+
+<a href="{{ url_for('download_excel') }}">
+    <button>📊 Download Excel</button>
+</a>
+
+<br><br>
+
+<hr>
+
+<h2>Patient Records</h2>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Height (cm)</th>
+        <th>Weight (kg)</th>
+        <th>BMI</th>
+        <th>BMI Category</th>
+        <th>BP Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for row in data %}
+
+    <tr>
+
+        <td>{{ row.Patient_ID }}</td>
+        <td>{{ row.Age }}</td>
+        <td>{{ row.Gender }}</td>
+        <td>{{ row.Height_cm }}</td>
+        <td>{{ row.Weight_kg }}</td>
+        <td>{{ row.BMI }}</td>
+        <td>{{ row.BMI_Category }}</td>
+        <td>{{ row.BP_Status }}</td>
+
+        <td>
+
+            <a href="{{ url_for('edit_patient', patient_id=row.Patient_ID) }}">
+                ✏️ Edit
+            </a>
+
+            |
+
+            <a href="{{ url_for('delete_patient', patient_id=row.Patient_ID) }}"
+               onclick="return confirm('Delete this patient?')">
+                🗑️ Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<br><br>
+
+<h2>BMI Category Chart</h2>
+
+<img src="{{ url_for('static', filename='bmi_chart.png') }}" width="450">
+
+</body>
+</html>

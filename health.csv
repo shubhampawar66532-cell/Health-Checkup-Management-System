@@ -1,0 +1,11 @@
+Patient_ID,Age,Gender,Height_cm,Weight_kg,Systolic_BP,Diastolic_BP,Exercise,Smoking,Alcohol,Sleep_Hours,Diabetes,Cholesterol,Photo
+1,22,Male,170,65,120,80,Yes,No,No,7,No,180,
+2,35,Female,160,70,130,85,Yes,No,Yes,6,No,190,
+3,28,Male,175,82,140,90,No,Yes,Yes,5,No,220,
+4,45,Female,155,68,150,95,No,No,No,6,Yes,240,
+5,31,Male,180,78,125,82,Yes,No,No,8,No,185,
+6,40,Female,165,85,145,92,No,Yes,Yes,5,Yes,230,
+7,26,Male,172,69,118,78,Yes,No,No,7,No,175,
+8,38,Female,158,74,135,88,No,No,Yes,6,No,205,
+9,50,Male,168,88,155,98,No,Yes,Yes,5,Yes,250,
+10,29,Female,162,60,122,80,Yes,No,No,8,No,170,
